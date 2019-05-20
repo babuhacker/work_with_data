@@ -1,12 +1,23 @@
 
 var weather;
+var api="http://api.openweathermap.org/data/2.5/find?q=";
+var city="London";
+var apikey="&appid=127c5673b4f4648033f407a6d6cd8339";
+var units="&units=metric";
+var input;
 function setup() {
- 
-  createCanvas(400,400);
-	
-	loadJSON('http://api.openweathermap.org/data/2.5/find?q=London&appid=127c5673b4f4648033f407a6d6cd8339&units=metric',gotData);
+	var button = select('#submit');
+	button.mousePressed(weatherAsk);
+	createCanvas(400,400);
+	input = select('#city');
 	
 
+}
+function weatherAsk(){
+	url=api+input.value()+apikey+units;
+	console.log(url);
+	loadJSON(url,gotData);
+	
 }
 function gotData(data){
 	weather = data;
